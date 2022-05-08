@@ -1,0 +1,9 @@
+template: Hello, %s!
+defaultName: Stranger
+messageQueue:
+  host: localhost
+  port: 8080
+logging:
+  level: INFO
+  loggers:
+    io.dropwizard: DEBUG
