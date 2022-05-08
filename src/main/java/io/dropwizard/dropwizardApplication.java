@@ -3,6 +3,7 @@ package io.dropwizard;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import io.dropwizard.Application;
 import io.dropwizard.cli.MyCommand;
+import io.dropwizard.cli.ShowTemplateName;
 import io.dropwizard.health.TemplateHealthCheck;
 import io.dropwizard.resources.SayingResource;
 import io.dropwizard.setup.Bootstrap;
@@ -24,6 +25,7 @@ public class dropwizardApplication extends Application<dropwizardConfiguration> 
     @Override
     public void initialize(final Bootstrap<dropwizardConfiguration> bootstrap) {
         bootstrap.addCommand(new MyCommand());
+        bootstrap.addCommand(new ShowTemplateName());
     }
 
     @Override
