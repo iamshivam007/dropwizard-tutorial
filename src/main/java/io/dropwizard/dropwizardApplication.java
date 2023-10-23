@@ -1,11 +1,10 @@
 package io.dropwizard;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
-import io.dropwizard.Application;
 import io.dropwizard.cli.MyCommand;
 import io.dropwizard.cli.ShowTemplateName;
 import io.dropwizard.health.TemplateHealthCheck;
 import io.dropwizard.resources.SayingResource;
+import io.dropwizard.resources.UserResource;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -34,9 +33,11 @@ public class dropwizardApplication extends Application<dropwizardConfiguration> 
         final SayingResource sayingResource = new SayingResource(
                 configuration.getTemplate(), configuration.getDefaultName()
         );
+        final UserResource userResource = new UserResource();
         final TemplateHealthCheck templateHealthCheck = new TemplateHealthCheck(configuration.getTemplate());
         environment.healthChecks().register("template", templateHealthCheck);
         environment.jersey().register(sayingResource);
+        environment.jersey().register(userResource);
 
         ScheduledExecutorService scheduledExecutorService = environment
                 .lifecycle()
